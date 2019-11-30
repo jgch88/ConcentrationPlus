@@ -10,17 +10,20 @@ import UIKit
 
 class ViewController: UIViewController {
 
-    @IBOutlet weak var CardButton: UIButton!
-    @IBOutlet weak var CardButton2: UIButton!
-    @IBOutlet weak var FlipCountLabel: UILabel!
+    @IBOutlet weak var flipCountLabel: UILabel!
+    @IBOutlet var cards: [UIButton]!
+    
+    let cardSymbols = ["👻", "🎃", "👻", "🎃"]
     var flipCount = 0 {
         didSet {
-            FlipCountLabel.text = "Flips: \(flipCount)"
+            flipCountLabel.text = "Flips: \(flipCount)"
         }
     };
     
     @IBAction func cardPress(_ sender: UIButton) {
-        flipCard(withEmoji: "👻", on: sender)
+        if let cardIndex = cards.firstIndex(of: sender) {
+            flipCard(withEmoji: cardSymbols[cardIndex], on: sender)
+        }
     }
     
     func flipCard(withEmoji emoji: String, on button: UIButton) {
@@ -37,9 +40,10 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = Colours.background;
-        CardButton.backgroundColor = Colours.cardBack;
-        CardButton2.backgroundColor = Colours.cardBack;
-        FlipCountLabel.textColor = Colours.primary
+        for card in cards {
+            card.backgroundColor = Colours.cardBack
+        }
+        flipCountLabel.textColor = Colours.primary
     }
 }
 
