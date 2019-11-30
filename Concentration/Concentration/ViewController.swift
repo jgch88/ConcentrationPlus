@@ -15,8 +15,8 @@ class ViewController: UIViewController {
     @IBOutlet weak var flipCountLabel: UILabel!
     @IBOutlet weak var newGameButton: UIButton!
     @IBOutlet var cards: [UIButton]!
+    lazy var emojiChoices = generateEmojiChoicesFromThemes()
 
-    
     var flipCount = 0 {
         didSet {
             flipCountLabel.text = "Flips: \(flipCount)"
@@ -37,7 +37,7 @@ class ViewController: UIViewController {
         game.newGame()
         flipCount = 0
         updateViewFromModel()
-        emojiChoices = ["👻", "🎃", "🦇", "🙀", "🍭", "😈", "💀", "👁"]
+        emojiChoices = generateEmojiChoicesFromThemes()
     }
     
     func updateViewFromModel() {
@@ -53,7 +53,16 @@ class ViewController: UIViewController {
             }
         }
     }
-    var emojiChoices = ["👻", "🎃", "🦇", "🙀", "🍭", "😈", "💀", "👁"]
+    
+    private func generateEmojiChoicesFromThemes() -> [String] {
+        let defaultTheme = ["👻", "🎃", "🦇", "🙀", "🍭", "😈", "💀", "👁"]
+        let themes = [
+            defaultTheme,
+            ["h", "g", "f", "e", "d", "c", "b", "a"]
+        ]
+        return themes.randomElement() ?? defaultTheme
+    }
+    
     var emoji = [Int:String]()
     
     func emoji(for card: Card) -> String {
