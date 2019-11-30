@@ -14,6 +14,7 @@
 		E097C84D23922B5000104E7B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E097C84C23922B5000104E7B /* Assets.xcassets */; };
 		E097C85023922B5000104E7B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E097C84E23922B5000104E7B /* LaunchScreen.storyboard */; };
 		E097C85B23922B5000104E7B /* ConcentrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E097C85A23922B5000104E7B /* ConcentrationTests.swift */; };
+		E097C86823922D9800104E7B /* Colours.swift in Sources */ = {isa = PBXBuildFile; fileRef = E097C86723922D9800104E7B /* Colours.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,6 +39,7 @@
 		E097C85623922B5000104E7B /* ConcentrationTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ConcentrationTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E097C85A23922B5000104E7B /* ConcentrationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConcentrationTests.swift; sourceTree = "<group>"; };
 		E097C85C23922B5000104E7B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E097C86723922D9800104E7B /* Colours.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colours.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,12 +81,10 @@
 		E097C84223922B4F00104E7B /* Concentration */ = {
 			isa = PBXGroup;
 			children = (
-				E097C84323922B4F00104E7B /* AppDelegate.swift */,
-				E097C84523922B4F00104E7B /* SceneDelegate.swift */,
+				E097C86623922D8400104E7B /* Constants */,
+				E097C86523922BD700104E7B /* Supporting Files */,
 				E097C84723922B4F00104E7B /* ViewController.swift */,
 				E097C84923922B4F00104E7B /* Main.storyboard */,
-				E097C84C23922B5000104E7B /* Assets.xcassets */,
-				E097C84E23922B5000104E7B /* LaunchScreen.storyboard */,
 				E097C85123922B5000104E7B /* Info.plist */,
 			);
 			path = Concentration;
@@ -97,6 +97,25 @@
 				E097C85C23922B5000104E7B /* Info.plist */,
 			);
 			path = ConcentrationTests;
+			sourceTree = "<group>";
+		};
+		E097C86523922BD700104E7B /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				E097C84323922B4F00104E7B /* AppDelegate.swift */,
+				E097C84523922B4F00104E7B /* SceneDelegate.swift */,
+				E097C84C23922B5000104E7B /* Assets.xcassets */,
+				E097C84E23922B5000104E7B /* LaunchScreen.storyboard */,
+			);
+			path = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		E097C86623922D8400104E7B /* Constants */ = {
+			isa = PBXGroup;
+			children = (
+				E097C86723922D9800104E7B /* Colours.swift */,
+			);
+			path = Constants;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -203,6 +222,7 @@
 				E097C84823922B4F00104E7B /* ViewController.swift in Sources */,
 				E097C84423922B4F00104E7B /* AppDelegate.swift in Sources */,
 				E097C84623922B4F00104E7B /* SceneDelegate.swift in Sources */,
+				E097C86823922D9800104E7B /* Colours.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
