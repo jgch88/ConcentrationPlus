@@ -11,13 +11,13 @@ import Foundation
 struct Card {
     var isFaceUp = false
     var isMatched = false
-    var identifier: Int
+    var identifier: Int // range: 1 to n cards
     
     static var identifierFactory = 0
     
     static func getUniqueIdentifier() -> Int {
-        Card.identifierFactory += 1
-        return Card.identifierFactory // can also write `return identifierFactory`, if calling static method from another static method
+        identifierFactory += 1
+        return identifierFactory
     }
     
     init() {

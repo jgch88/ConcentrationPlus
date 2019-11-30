@@ -66,3 +66,6 @@
     - e.g `UInt32(someInt)`
 - Can combine nested ifs with a comma
     - `if someCondition, anotherCondition { ... }`
+### Resources for cleaner MVC
+- https://medium.com/@ali.aga_2866/unit-testing-model-view-controller-on-ios-with-swift-c010c132292d
+- https://developer.apple.com/videos/play/wwdc2016/419/ 

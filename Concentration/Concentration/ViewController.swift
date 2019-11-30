@@ -13,6 +13,7 @@ class ViewController: UIViewController {
     lazy var game = Concentration(numberOfPairsOfCards: (cards.count + 1) / 2) // in case number of cards is odd
     
     @IBOutlet weak var flipCountLabel: UILabel!
+    @IBOutlet weak var newGameButton: UIButton!
     @IBOutlet var cards: [UIButton]!
 
     
@@ -30,6 +31,12 @@ class ViewController: UIViewController {
         } else {
             print("chosen card was not in cards")
         }
+    }
+    
+    @IBAction func newGame(_ sender: UIButton) {
+        game.newGame()
+        flipCount = 0
+        updateViewFromModel()
     }
     
     func updateViewFromModel() {
@@ -64,6 +71,8 @@ class ViewController: UIViewController {
             card.backgroundColor = Colours.cardBack
         }
         flipCountLabel.textColor = Colours.primary
+        newGameButton.backgroundColor = Colours.secondary
+        newGameButton.setTitleColor(Colours.background, for: UIControl.State.normal)
     }
 }
 

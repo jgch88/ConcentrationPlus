@@ -12,44 +12,44 @@ import Foundation
 class Concentration
 {
     var cards = [Card]()
-    var indexOfOneAndOnlyFaceUpCard: Int?
+    var viewIndexOfOneAndOnlyFaceUpCard: Int?
+    private var numberOfPairs: Int
     
-    func chooseCard(at index: Int) {
-        if !cards[index].isMatched {
-            if let matchIndex = indexOfOneAndOnlyFaceUpCard, matchIndex != index {
-                // check if cards match
-                if cards[matchIndex].identifier == cards[index].identifier {
-                    cards[matchIndex].isMatched = true
-                    cards[index].isMatched = true
+    func chooseCard(at viewIndex: Int) {
+        if !cards[viewIndex].isMatched {
+            if let indexToMatch = viewIndexOfOneAndOnlyFaceUpCard, indexToMatch != viewIndex {
+                // there is a face up card, check if cards match
+                if cards[indexToMatch].identifier == cards[viewIndex].identifier {
+                    cards[indexToMatch].isMatched = true
+                    cards[viewIndex].isMatched = true
                 }
-                cards[index].isFaceUp = true
-                indexOfOneAndOnlyFaceUpCard = nil
+                cards[viewIndex].isFaceUp = true
+                viewIndexOfOneAndOnlyFaceUpCard = nil
             } else {
-                // either no cards, or two cards are face up
+                // no face up cards, either no cards, or two cards are face up
                 for flipDownIndex in cards.indices {
                     cards[flipDownIndex].isFaceUp = false
                 }
-                cards[index].isFaceUp = true
-                indexOfOneAndOnlyFaceUpCard = index
+                cards[viewIndex].isFaceUp = true
+                viewIndexOfOneAndOnlyFaceUpCard = viewIndex
             }
+        }
+    }
+    
+    // new game requires a derived state precondition? unmatchedCardsRemaining
+    func newGame() {
+        cards = [Card]()
+        for _ in 1...self.numberOfPairs {
+            let card = Card()
+            cards += [card, card]
         }
     }
     
     init(numberOfPairsOfCards: Int) {
         // TODO: Shuffle the cards
+        self.numberOfPairs = numberOfPairsOfCards
         for _ in 1...numberOfPairsOfCards {
             let card = Card()
-            
-//            Approach 1:
-//            let matchingCard = card
-//            cards.append(card)
-//            cards.append(matchingCard) // this is a copy, not the same reference because it is a struct, so there are two unique cards
-            
-//            Approach 2:
-//            cards.append(card) // appending into an array also does a copy
-//            cards.append(card)
-            
-//            Approach 3:
             cards += [card, card]
         }
     }

@@ -16,7 +16,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Flips: 0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="95n-MG-8zM">
-                                <rect key="frame" x="49" y="679" width="317" height="103"/>
+                                <rect key="frame" x="49" y="613" width="317" height="103"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -166,11 +166,21 @@
                                     <action selector="cardPress:" destination="BYZ-38-t0r" eventType="touchUpInside" id="S8y-DQ-g5s"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Cox-Lj-CF9">
+                                <rect key="frame" x="115" y="724" width="184" height="69"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                <state key="normal" title="New Game"/>
+                                <connections>
+                                    <action selector="newGame:" destination="BYZ-38-t0r" eventType="touchUpInside" id="s0h-pE-UzF"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
                         <outlet property="flipCountLabel" destination="95n-MG-8zM" id="60o-WH-GKK"/>
+                        <outlet property="newGameButton" destination="Cox-Lj-CF9" id="cdf-pJ-bgH"/>
                         <outletCollection property="cards" destination="lWE-OO-iwB" collectionClass="NSMutableArray" id="RIe-w3-ZKA"/>
                         <outletCollection property="cards" destination="e8W-YD-TKR" collectionClass="NSMutableArray" id="Fg0-hz-f4d"/>
                         <outletCollection property="cards" destination="ESp-Fy-PNK" collectionClass="NSMutableArray" id="db5-7g-cnl"/>
