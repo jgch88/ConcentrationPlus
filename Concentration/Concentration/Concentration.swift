@@ -39,18 +39,20 @@ class Concentration
     // new game requires a derived state precondition? unmatchedCardsRemaining
     func newGame() {
         cards = [Card]()
-        for _ in 1...self.numberOfPairs {
-            let card = Card()
-            cards += [card, card]
-        }
+        setupBoard(numberOfPairsOfCards: self.numberOfPairs)
     }
     
     init(numberOfPairsOfCards: Int) {
         // TODO: Shuffle the cards
         self.numberOfPairs = numberOfPairsOfCards
+        setupBoard(numberOfPairsOfCards: numberOfPairsOfCards)
+    }
+    
+    private func setupBoard(numberOfPairsOfCards: Int) {
         for _ in 1...numberOfPairsOfCards {
             let card = Card()
             cards += [card, card]
         }
+        cards = cards.shuffled()
     }
 }

@@ -37,6 +37,7 @@ class ViewController: UIViewController {
         game.newGame()
         flipCount = 0
         updateViewFromModel()
+        emojiChoices = ["👻", "🎃", "🦇", "🙀", "🍭", "😈", "💀", "👁"]
     }
     
     func updateViewFromModel() {
