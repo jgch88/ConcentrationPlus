@@ -10,9 +10,59 @@
 - Remember to add a sender type on @IBAction e.g. `@IBAction func buttonPress(_ sender: UIButton)` (instead of default's any)
 - To see the StoryBoard + Code together, use "Assistant" view to split the screen vertically
 - Property Observers can have anonymous delegates, e.g. `var flipCount = 0 { didSet { print("\(flipCount)") } }`, such that if flipCount was "set", the didSet closure will execute
+    - similar to mobX reaction
 - Use an Outlet Collection to have a list of `[UIButton]` and abstract away each concrete Button. Can loop over all the buttons or use indices to access them. (seems like you have to manually link each card to the same Outlet Collection?)
 - Loop over collection: `for card in cards { ... }`
 - use camelCase for properties, even IBOutlet/IBAction
 - `?` optionals are just an enumeration for two states: set | unset
 - optionals can be unwrapped safely via if let / guard let e.g. `if let cardIndex = cards.firstIndex(of: sender) { ... }`. guard let is the opposite of if let, like a guard clause
 - optionals can be unsafely accessed via `!` (similar to typescript)
+
+## Lecture 2
+- MVC pattern (model = what, controller = how, view = controller's minions)
+- Communication between M/V/C:
+    - Controller can always talk to their Model
+    - Controller can also talk to their View
+    - Model should never talk to the View, i.e. Controller is the Mediator!
+    - View can talk to Controller, but only in a "blind" way, e.g. via an @IBAction
+        - Controller sets itself as View's Delegate e.g. a ScrollView has a "delegate" var that has a reference to the Controller, which implements did/will/should functions
+        - Delegate is set via protocol (Swift protocols are similar to Interfaces)
+    - Views do not own the data the display (like functional dumb components?)
+        - Controller provides a "data source" (also a sort of delegate)
+    - Controller formats the Model FOR the View
+    - Controller interprets View actions FOR the Model
+    - Model needs to notify Controller of data changes without talking directly to it
+        - Controller has to use Notifications/Key Value Observing
+        - Model has to broadcast that things are changing
+- A ViewController usually corresponds to one screen
+    - But if ViewControllers need to talk to each other, they would be considered as the "View" of the calling ViewController
+- Create a Model via new Swift File
+- Structs are almost the same as Classes in Swift, they don't just hold data. Two differences:
+    1. No inheritance
+    2. Structs are Value Types (gets copied when passed around) and Classes are Reference Types
+        - Arrays/Ints/Strings/Dictionaries are Structs in iOS! (but actually it only does copy on modification, "copy on write" semantics)
+        - Reference Types - the object lives in the heap, just passing pointers around
+        - just by assigning it, it will get a copy e.g. (var matchingCard = card)
+        - just by appending it into an array, it will also get a copy!
+- Classes can be initialised if inside they have something else that is initialising, e.g. an array `[Card]()`
+    - Classes get a "free" `init` if all of the properties within it are initialised
+- Structs get a "free" `init` of all their properties
+- CountableRange: `0..<numberOfItems` (similar to python's range(numberOfItems)), returns an iterable you can do a for loop over
+    - think of it as if numberOfItems = 4, range = 0..<4 = [0,1,2,3] (all the items less than 4)
+    - another syntax `1...numberOfItems` => returns [1,2,3,4] (inclusive of 4)
+    - can get a CountableRange from an array using `cards.indices`
+- Arrays: can append into array using `cards += [card, card]` // will also all be copies, both of card and the array
+- Define return type on func using -> e.g. `static func getUniqueIdentifier() -> Int { return ... }`
+- Declaration of `Dictionary<Int, String>` is exactly the same as `[Int:String]`
+- In a static method, you can omit the class name if you wish to call another static method on the same class
+- using `_` tells Swift to ignore the variable (e.g. warnings)
+- can't use another property within a property during initialization
+    - use lazy initialization
+    - lazy vars cannot have Property Observers
+    - alternative is to use delegate functions on ViewController
+- `??` null coalescing operator, similar to C#
+- have to use var for array types because doing operations mutates it and it's a Struct/Value Type!
+- Swift never automatically converts types, you have to explicitly use an initializer and hope it accepts the type you want to cast from
+    - e.g `UInt32(someInt)`
+- Can combine nested ifs with a comma
+    - `if someCondition, anotherCondition { ... }`
