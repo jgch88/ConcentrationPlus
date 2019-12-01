@@ -12,19 +12,25 @@ class ViewController: UIViewController {
 
     lazy var game = Concentration(numberOfPairsOfCards: (cards.count + 1) / 2) // in case number of cards is odd
     
+    @IBOutlet weak var scoreLabel: UILabel!
     @IBOutlet weak var flipCountLabel: UILabel!
     @IBOutlet weak var newGameButton: UIButton!
     @IBOutlet var cards: [UIButton]!
     lazy var emojiChoices = generateEmojiChoicesFromThemes()
 
+    // view model
     var flipCount = 0 {
         didSet {
             flipCountLabel.text = "Flips: \(flipCount)"
         }
     };
+    var score = 0 {
+        didSet {
+            scoreLabel.text = "Score: \(score)"
+        }
+    }
     
     @IBAction func cardPress(_ sender: UIButton) {
-        flipCount += 1
         if let cardNumber = cards.firstIndex(of: sender) {
             game.chooseCard(at: cardNumber)
             updateViewFromModel()
@@ -52,6 +58,8 @@ class ViewController: UIViewController {
                 button.backgroundColor = card.isMatched ? #colorLiteral(red: 1, green: 0.5763723254, blue: 0, alpha: 0) : Colours.cardBack
             }
         }
+        score = game.score
+        flipCount = game.flipCount
     }
     
     private func generateEmojiChoicesFromThemes() -> [String] {
@@ -81,6 +89,7 @@ class ViewController: UIViewController {
             card.backgroundColor = Colours.cardBack
         }
         flipCountLabel.textColor = Colours.primary
+        scoreLabel.textColor = Colours.primary
         newGameButton.backgroundColor = Colours.secondary
         newGameButton.setTitleColor(Colours.background, for: UIControl.State.normal)
     }
